@@ -1,0 +1,23 @@
+﻿@model List<Connect_SQL_Derver_with_Spreadsheet.Models.Products>
+
+<h1>Available Products</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Avaliable In Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ItemName</td>
+                <td>@item.Avaliable</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

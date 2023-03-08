@@ -1,0 +1,74 @@
+﻿   @model Connect_SQL_Derver_with_Spreadsheet.Models.Item
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Line Items</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div id="line-items">
+                <div class="line-item">
+                    <h5>Line Items</h5>
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" name="lineItems[0].ProductName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" name="lineItems[0].Quantity" class="form-control" />
+                    </div>
+                   
+                </div>
+            </div>
+
+            <button type="button" id="add-line-item" class="btn btn-primary">Add Line Item</button>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            var nextLineItemId = 1;
+            $('#add-line-item').click(function () {
+                var newLineItem = $('<div class="line-item">' +
+                    '<h5>Line Item ' + (nextLineItemId + 1) + '</h5>' +
+                    '<div class="form-group">' +
+                    '<label>Product Name</label>' +
+                    '<input type="text" name="lineItems[' + nextLineItemId + '].ProductName" class="form-control" />' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Quantity</label>' +
+                    '<input type="number" name="lineItems[' + nextLineItemId + '].Quantity" class="form-control" />' +
+                    '</div>');
+                $('#line-items').append(newLineItem);
+                nextLineItemId++;
+            });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

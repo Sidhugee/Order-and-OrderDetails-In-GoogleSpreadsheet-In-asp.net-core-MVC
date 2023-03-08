@@ -1,0 +1,43 @@
+﻿@model List<Item>
+
+<h1>Orders</h1>
+
+<p>
+    <a asp-action="Create" asp-route-rowId="0">Create Order</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+
+
+            <th>OrderId</th>
+            <th>Customer Name</th>
+
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+
+
+
+
+
+
+                @*<td>
+            <a asp-action="Create" asp-route-rowId="@item.Id">Edit</a>
+            </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
